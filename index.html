@@ -1,0 +1,497 @@
+<!-- WłoBud-Service Landing Page | Developer: Bartek Baran / bartekbaran.pl | Built: 2025 | Revisions: 2 included, additional 150 zl/h | Deploy: Netlify drag-and-drop on client account -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WłoBud-Service — Warsztat samochodowy Włocławek</title>
+
+  <meta name="description" content="Warsztat samochodowy WłoBud-Service — mechanika, diagnostyka, wulkanizacja mobilna i stacjonarna. Pojazdy osobowe i ciężarowe. Włocławek i okolice.">
+  <meta property="og:title" content="WłoBud-Service — Warsztat samochodowy Włocławek">
+  <meta property="og:description" content="Mechanika, diagnostyka komputerowa, wulkanizacja. Obsługujemy osobowe i ciężarowe. Dojeżdżamy do Ciebie.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://wlobud-service.pl">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-bg': '#f0efec',
+            'g100': '#ebebea',
+            'g200': '#deddd9',
+            'g300': '#c4c3be',
+            'g400': '#a0a09a',
+            'g500': '#76766f',
+            'g600': '#555550',
+            'g700': '#3a3a36',
+            'g800': '#242421',
+            'g900': '#141411',
+            'red':  '#b83030',
+          },
+          fontFamily: {
+            sans:    ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+            grotesk: ['"Space Grotesk"', 'sans-serif'],
+          },
+          maxWidth: {
+            page: '1160px',
+          },
+        }
+      }
+    }
+  </script>
+
+  <script src="https://unpkg.com/phosphor-icons"></script>
+
+  <style>
+    /* z-index: nav=100 */
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      background-color: #f0efec;
+      color: #242421;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      color: #b83030;
+      letter-spacing: 0.3px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .card-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+    .card-list li {
+      font-size: 14px;
+      color: #555550;
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .card-list li::before {
+      content: '->';
+      position: absolute;
+      left: 0;
+      color: #c4c3be;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: 0;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.82; }
+    .btn-red   { background: #b83030; color: #ffffff; border-color: #b83030; }
+    .btn-ghost { background: transparent; color: #242421; border-color: #242421; }
+    .btn-ghost-w { background: transparent; color: #ffffff; border-color: #ffffff; }
+
+    .cta-phone {
+      display: block;
+      text-decoration: none;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -1px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      transition: opacity 0.15s;
+    }
+    .cta-phone:hover { opacity: 0.85; }
+
+    .footer-dev a { color: #a0a09a; text-decoration: none; }
+    .footer-dev a:hover { text-decoration: underline; }
+
+    /* Strip responsive borders */
+    .strip-item { border-right: none; border-top: none; }
+    @media (max-width: 767px) {
+      .strip-item:nth-child(2n+1) { border-right: 1px solid #3a3a36; }
+      .strip-item:nth-child(n+3)  { border-top:   1px solid #3a3a36; }
+    }
+    @media (min-width: 768px) {
+      .strip-item:not(:last-child) { border-right: 1px solid #3a3a36; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- §1 NAVBAR -->
+  <nav style="position:sticky;top:0;z-index:100;background:#ffffff;border-bottom:1px solid #deddd9;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12" style="height:64px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="#hero" style="font-size:20px;font-weight:700;color:#242421;letter-spacing:-0.3px;text-decoration:none;">
+        WłoBud<em style="color:#b83030;font-style:normal;">-Service</em>
+      </a>
+      <a href="tel:+48XXXXXXXXX" class="btn btn-red">Zadzwoń teraz</a>
+    </div>
+  </nav>
+
+
+  <!-- §2 HERO -->
+  <section id="hero" style="background:#ffffff;border-bottom:1px solid #deddd9;padding:72px 0 64px;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_400px] gap-12 md:gap-16 items-center">
+
+        <div>
+          <span class="eyebrow">Warsztat samochodowy · Włocławek i okolice</span>
+          <h1 style="font-size:clamp(40px,6vw,58px);font-weight:700;line-height:1.05;color:#141411;margin-bottom:22px;">
+            Naprawiamy.<br>Diagnozujemy.<br>Dojeżdżamy.
+          </h1>
+          <p style="font-size:18px;color:#555550;max-width:460px;margin-bottom:36px;line-height:1.65;">
+            Mechanika osobowa i ciężarowa, diagnostyka komputerowa,
+            wulkanizacja mobilna i stacjonarna. Wszystko pod jednym dachem
+            i bezpośrednio w terenie.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="tel:+48782969137" class="btn btn-red">+48 782 969 137</a>
+            <a href="#uslugi" class="btn btn-ghost">Zobacz usługi ↓</a>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <img
+            src="https://picsum.photos/seed/auto-workshop-mechanic/600/420"
+            alt="Warsztat WłoBud-Service"
+            width="600"
+            height="420"
+            fetchpriority="high"
+            loading="eager"
+            class="w-full h-auto block">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- §3 STRIP -->
+  <div style="background:#242421;border-top:3px solid #b83030;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-2 md:grid-cols-4">
+
+        <div class="strip-item reveal flex flex-col justify-center px-5 md:px-8 py-9">
+          <span style="font-size:32px;font-weight:700;color:#ffffff;line-height:1;letter-spacing:-0.5px;">15+</span>
+          <span style="font-size:13px;font-weight:400;color:#76766f;line-height:1.4;margin-top:6px;">lat doświadczenia</span>
+        </div>
+
+        <div class="strip-item reveal flex flex-col justify-center px-5 md:px-8 py-9">
+          <span style="font-size:16px;font-weight:700;color:#ffffff;line-height:1.2;">Pojazdy osobowe</span>
+          <span style="font-size:13px;font-weight:400;color:#76766f;line-height:1.4;margin-top:6px;">i ciężarowe</span>
+        </div>
+
+        <div class="strip-item reveal flex flex-col justify-center px-5 md:px-8 py-9">
+          <span style="font-size:16px;font-weight:700;color:#ffffff;line-height:1.2;">Mobilna diagnostyka</span>
+          <span style="font-size:13px;font-weight:400;color:#76766f;line-height:1.4;margin-top:6px;">i wulkanizacja</span>
+        </div>
+
+        <div class="strip-item reveal flex flex-col justify-center px-5 md:px-8 py-9">
+          <span style="font-size:16px;font-weight:700;color:#ffffff;line-height:1.2;">Serwis na miejscu</span>
+          <span style="font-size:13px;font-weight:400;color:#76766f;line-height:1.4;margin-top:6px;">i w terenie</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- §4 SERVICES -->
+  <section id="uslugi" style="background:#f0efec;padding:80px 0;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12">
+
+      <div style="text-align:center;margin-bottom:48px;">
+        <h2 style="font-size:34px;font-weight:700;color:#141411;line-height:1.18;margin-bottom:10px;">Pełen zakres usług<br>motoryzacyjnych</h2>
+        <p style="font-size:16px;color:#76766f;line-height:1.6;">Od codziennego serwisu po custom: pojazdy osobowe, ciężarowe i budowlane.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:30px 32px;">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #deddd9;">
+            <div style="width:44px;height:44px;background:#ebebea;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ph ph-wrench" style="font-size:24px;color:#b83030;"></i>
+            </div>
+            <h3 style="font-size:17px;font-weight:700;color:#242421;line-height:1.25;">Mechanika<br>i diagnostyka</h3>
+          </div>
+          <ul class="card-list">
+            <li>Mechanika pojazdów ciężarowych i budowlanych</li>
+            <li>Mechanika samochodowa</li>
+            <li>Diagnostyka komputerowa</li>
+            <li>Mobilna diagnostyka pojazdów</li>
+          </ul>
+        </div>
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:30px 32px;">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #deddd9;">
+            <div style="width:44px;height:44px;background:#ebebea;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ph ph-gauge" style="font-size:24px;color:#b83030;"></i>
+            </div>
+            <h3 style="font-size:17px;font-weight:700;color:#242421;line-height:1.25;">Serwis<br>i eksploatacja</h3>
+          </div>
+          <ul class="card-list">
+            <li>Wulkanizacja stacjonarna</li>
+            <li>Wulkanizacja mobilna</li>
+            <li>Klimatyzacja</li>
+            <li>Serwisy okresowe</li>
+            <li>Zawieszenia gwintowane</li>
+          </ul>
+        </div>
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:30px 32px;">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #deddd9;">
+            <div style="width:44px;height:44px;background:#ebebea;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ph ph-lightning" style="font-size:24px;color:#b83030;"></i>
+            </div>
+            <h3 style="font-size:17px;font-weight:700;color:#242421;line-height:1.25;">Performance<br>i tuning</h3>
+          </div>
+          <ul class="card-list">
+            <li>Tuning</li>
+            <li>Custom wydechy</li>
+            <li>Drift spec</li>
+          </ul>
+        </div>
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:30px 32px;">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #deddd9;">
+            <div style="width:44px;height:44px;background:#ebebea;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ph ph-paint-roller" style="font-size:24px;color:#b83030;"></i>
+            </div>
+            <h3 style="font-size:17px;font-weight:700;color:#242421;line-height:1.25;">Nadwozie<br>i blacharnia</h3>
+          </div>
+          <ul class="card-list">
+            <li>Body kity</li>
+            <li>Usługi blacharsko-spawalnicze</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- §5 WHY US — no eyebrow -->
+  <section style="background:#ffffff;border-top:1px solid #deddd9;border-bottom:1px solid #deddd9;padding:80px 0;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12">
+
+      <div style="text-align:center;margin-bottom:48px;">
+        <h2 style="font-size:34px;font-weight:700;color:#141411;line-height:1.18;margin-bottom:10px;">Nie tylko warsztat</h2>
+        <p style="font-size:16px;color:#76766f;line-height:1.6;">Kilka powodów, dla których wracają do nas klienci z całego regionu.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+
+        <div class="reveal" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="width:60px;height:60px;background:#ebebea;display:flex;align-items:center;justify-content:center;">
+            <i class="ph ph-map-pin" style="font-size:32px;color:#b83030;"></i>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#242421;">Dojeżdżamy do Ciebie</h3>
+          <p style="font-size:15px;color:#76766f;line-height:1.65;">
+            Awaria w trasie? Mobilna wulkanizacja i diagnostyka
+            dotrą do Ciebie. Bez holowania, bez czekania, bez stresu.
+          </p>
+        </div>
+
+        <div class="reveal" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="width:60px;height:60px;background:#ebebea;display:flex;align-items:center;justify-content:center;">
+            <i class="ph ph-truck" style="font-size:32px;color:#b83030;"></i>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#242421;">Ciężarówki i osobówki</h3>
+          <p style="font-size:15px;color:#76766f;line-height:1.65;">
+            Obsługujemy zarówno samochody osobowe, jak i pojazdy ciężarowe
+            oraz maszyny budowlane. Jedno miejsce, cały zakres.
+          </p>
+        </div>
+
+        <div class="reveal" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="width:60px;height:60px;background:#ebebea;display:flex;align-items:center;justify-content:center;">
+            <i class="ph ph-sliders-horizontal" style="font-size:32px;color:#b83030;"></i>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:#242421;">Od serwisu po custom</h3>
+          <p style="font-size:15px;color:#76766f;line-height:1.65;">
+            Przegląd, klimatyzacja, custom wydech czy drift spec. Kompleksowo obsługujemy każdą potrzebę motoryzacyjną.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- §6 REVIEWS — no eyebrow -->
+  <section style="background:#f0efec;border-top:1px solid #deddd9;padding:80px 0;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12">
+
+      <div style="text-align:center;margin-bottom:48px;">
+        <h2 style="font-size:34px;font-weight:700;color:#141411;line-height:1.18;margin-bottom:10px;">Co mówią o nas klienci</h2>
+        <p style="font-size:16px;color:#76766f;line-height:1.6;">Zaufali nam kierowcy z Włocławka i okolic.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:28px 28px 24px;display:flex;flex-direction:column;gap:16px;">
+          <div style="text-align:center;font-size:24px;color:#c9963a;line-height:1;letter-spacing:2px;">
+            ★★★★★
+          </div>
+          <p style="font-size:14px;color:#555550;line-height:1.65;font-style:italic;margin-top:auto;">
+            "Terminowość, zaangażowanie w eliminację problemów oraz kontakt z klientem oceniam na 5* polecam"
+          </p>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #deddd9;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#3a3a36;">Yasny</div>
+              <div style="font-size:12px;color:#a0a09a;">Google · 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:28px 28px 24px;display:flex;flex-direction:column;gap:16px;">
+          <div style="text-align:center;font-size:24px;color:#c9963a;line-height:1;letter-spacing:2px;">
+            ★★★★★
+          </div>
+          <p style="font-size:14px;color:#555550;line-height:1.65;font-style:italic;margin-top:auto;">
+            „Najlepszy mechanik do jakiego trafiło moje autko!!! Nie dość ,że naprawił to co trzeba to jeszcze znalazł błąd i go wyeliminował , dzięki czemu autko śmiga, aż miło!!! Jakość, cena , czas- 100% polecam !!!"
+          </p>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #deddd9;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#3a3a36;">S K</div>
+              <div style="font-size:12px;color:#a0a09a;">Google · 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="background:#ffffff;border:1px solid #deddd9;padding:28px 28px 24px;display:flex;flex-direction:column;gap:16px;">
+          <div style="text-align:center;font-size:24px;color:#c9963a;line-height:1;letter-spacing:2px;">
+            ★★★★★
+          </div>
+          <p style="font-size:14px;color:#555550;line-height:1.65;font-style:italic;margin-top:auto;">
+            „Serdecznie polecam, rzetelna opinia i super podejście! 😀 …"
+          </p>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #deddd9;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#3a3a36;">Krystyna F</div>
+              <div style="font-size:12px;color:#a0a09a;">Google · 2025</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- §7 CTA SECTION -->
+  <section style="background:#141411;padding:80px 0;text-align:center;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12" style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+      <h2 style="font-size:clamp(32px,5vw,40px);font-weight:700;color:#ffffff;line-height:1.2;">
+        Masz problem z autem?<br>Nie czekaj.
+      </h2>
+      <a href="tel:+48782969137" class="cta-phone" style="font-size:clamp(36px,7vw,56px);">+48 782 969 137</a>
+      <span style="font-size:14px;color:#76766f;">Poniedziałek - Piątek: 8:00-17:00 &nbsp;·&nbsp; Sobota: 8:00-12:00</span>
+      <a href="tel:+48782969137" class="btn btn-ghost-w" style="margin-top:4px;">Zadzwoń teraz</a>
+    </div>
+  </section>
+
+
+  <!-- §8 FOOTER -->
+  <footer style="background:#141411;border-top:1px solid #242421;padding:56px 0 32px;">
+    <div class="max-w-page mx-auto px-4 sm:px-8 lg:px-12">
+
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 md:gap-12" style="margin-bottom:48px;">
+
+        <div>
+          <a href="#hero" style="font-size:17px;font-weight:700;color:#ffffff;margin-bottom:12px;text-decoration:none;display:block;">
+            WłoBud<em style="color:#b83030;font-style:normal;">-Service</em>
+          </a>
+          <p style="font-size:13px;color:#76766f;line-height:1.65;max-width:260px;">
+            Warsztat samochodowy z 15-letnim doświadczeniem.
+            Mechanika, diagnostyka, wulkanizacja i custom. Pojazdy osobowe i ciężarowe.
+          </p>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#76766f;margin-bottom:16px;">Kontakt</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="font-size:14px;color:#a0a09a;line-height:1.45;">+48 782 969 137</li>
+            <li style="font-size:13px;color:#555550;line-height:1.45;">Zapisy i pytania telefonicznie</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#76766f;margin-bottom:16px;">Adres</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="font-size:14px;color:#a0a09a;line-height:1.45;">Rząśnia 49B<br>98-332 Rząśnia</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#76766f;margin-bottom:16px;">Godziny</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="font-size:14px;color:#a0a09a;line-height:1.45;">Poniedziałek - Piątek: 8:00-17:00</li>
+            <li style="font-size:14px;color:#a0a09a;line-height:1.45;">Sobota: 8:00-12:00</li>
+            <li style="font-size:14px;color:#a0a09a;line-height:1.45;">Niedziela: nieczynne</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3" style="border-top:1px solid #242421;padding-top:24px;">
+        <span style="font-size:13px;color:#555550;">© 2025 WłoBud-Service. Wszelkie prawa zastrzeżone.</span>
+        <span class="footer-dev" style="font-size:13px;color:#555550;">Projekt: <a href="https://bartekbaran.pl" target="_blank" rel="noopener">bartekbaran.pl</a></span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+            const index = siblings.indexOf(entry.target);
+            entry.target.style.transitionDelay = `${index * 60}ms`;
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>
